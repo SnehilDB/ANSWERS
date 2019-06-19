@@ -1,9 +1,9 @@
 package BOOKS;
 
+import java.awt.print.Book;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.Scanner;
+import java.util.*;
 import java.time.temporal.ChronoUnit;
 
 //import static java.time.temporal.ChronoUnit.DAYS;
@@ -27,7 +27,9 @@ public class General
     this.Book_issued_to=Book_issued_to;
     this.Book_issue_date=Book_issue_date;
     this.Book_till_date=Book_till_date;
-    }
+
+
+   }
 
     public void format_date(String Book_issue_date,String Book_till_date) throws Exception
     {
@@ -77,23 +79,39 @@ class Book_details
 
     public static void main(String[] args)
         {
-          try{
+          try {
 
-              Scanner sc=new Scanner(System.in);
+              Scanner sc = new Scanner(System.in);
               System.out.println("Enter details");
-             // String  vid=sc.next();
+              // String  vid=sc.next();
 
-              Integer id =  sc.nextInt();//Integer.parseInt(vid);
-              String Book_name=sc.next();
-              String Book_issued_to=sc.next();
-              String Book_issue_date=sc.next();
-              String Book_till_date=sc.next();
-              General Book1=new General(id,Book_name,Book_issued_to,Book_issue_date,Book_till_date);
-              Book1.format_date(Book_issue_date,Book_till_date);
+              Integer id = sc.nextInt();//Integer.parseInt(vid);
+              String Book_name = sc.next();
+              String Book_issued_to = sc.next();
+              String Book_issue_date = sc.next();
+              String Book_till_date = sc.next();
+
+
+              General Book1 = new General(id, Book_name, Book_issued_to, Book_issue_date, Book_till_date);
+              Book1.format_date(Book_issue_date, Book_till_date);
               System.out.println(Book1.fine());
 
+              HashMap<Integer, General> hm = new HashMap<>();
+              General b1 = new General(1, "A", "AA", "2017-07-29", "2017-09-29");
+              General b2 = new General(2, "B", "BB", "2017-09-01", "2017-09-29");
+              hm.put(1, b1);
+              hm.put(2, b2);
+
+              for (Map.Entry<Integer, General> entry : hm.entrySet()) {
+                  int key = entry.getKey();
+                  General b = entry.getValue();
+                  System.out.println(key + " Details:");
+                  System.out.println(b.Book_id + " " + b.Book_name + " " + b.Book_issued_to + " " + b.Book_issue_date + " " + b.Book_till_date);
+
+              }
           }
-          catch (Exception e){
+
+              catch (Exception e){
               e.printStackTrace();
           }
 
